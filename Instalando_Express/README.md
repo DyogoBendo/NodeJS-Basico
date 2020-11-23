@@ -3,7 +3,7 @@
 Para realizar a instalação do express fazemos uso do NPM
 
 # NPM 
-NPM é o maior repositório de pacotes, bibliotecas e módulos, todos open-source. 
+NPM é o maior repositório de pacotes, bibliotecas e módulos, todos open-source. E também um gerenciador de pacotes, permitindo a instalação de todos os pacotes que estão em seu repositório em qualquer projeto Node. 
 
 Para acessar a página do NPM, basta clicar [aqui](https://www.npmjs.com). 
 
