@@ -1,17 +1,10 @@
-function somar(a, b){
-    return a + b
-}
+const somaFunc = require("./sum") // função para carregar um módulo
+const subFunc = require("./sub") // função para carregar um módulo
+const divFunc = require("./div") // função para carregar um módulo
+const multiFunc = require("./multi") // função para carregar um módulo
 
-function subtrair(a, b){
-    return a - b
-}
 
-function multiplicar(a, b){
-    return a * b
-}
-
-function div (a, b){
-    return a / b
-}
-
-console.log(subtrair(2, 4))
+console.log(somaFunc(2, 4))
+console.log(subFunc(2, 4))
+console.log(divFunc(2, 4))
+console.log(multiFunc(2, 4))
