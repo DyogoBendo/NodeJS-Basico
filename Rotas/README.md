@@ -73,3 +73,56 @@ app.get("/sobre", function(req, res){
 Podemos agora acessar um outra caminho, na mesma URL. Se acessarmos o caminho `/sobre`, a mensagem "Minha página sobre nós" aparece. 
 
 O Express é um framework orientado a rotas, ou seja, toda a aplicação é baseada nessa estrutura de rotas.
+
+# Parâmetros
+O parâmetro é um valor dinâmico que o usuário pode passar 
+
+Para criarmos um parâmetro, escrevemos `/:nome_parametro` após o nome da rota. Por exemplo: 
+
+```
+app.get('/ola/:nome', function(req, res){
+    res.send("Ola")
+})
+```
+Nesse caso, precisamos passar obrigatoriamente um valor para o parâmetro na URL para que a rota possa ser "encontrada".  
+
+Podemis encadear parâmetros, colocando quanto quisermos: 
+```
+/:parametro1/:parametro2/:parametro3/...
+```
+
+Os valores passados na URL para os parâmetros são guardados no argumento `req`, da função callback. 
+
+Esse argumento é responsável por receber os dados de uma requisição. Quando o usuário digita dados na URL para os parâmetros, eles são enviados através de uma requisição HTTP para nosso servidor, que são passados para `req`
+
+Utilizando `req.params`, temos como retorno um objeto no formato JSON, que podemos manipular. Sua composição é o nome dos parâmetros, e o valor que foi passado para cada um. 
+
+Com isso, dentro da nossa função, podemos usar esses parâmetros para passar mensagens dinâmicas, entre outras coisas. Por exemplo: 
+
+```
+app.get('/ola/:nome', function(req, res){
+    res.send("Ola "+ req.params.nome)
+})
+```
+
+Nesse exemplo, será mostrado o nome que o usuário digitar na URL.
+
+# Nodemon 
+O Nodemon automatiza o processo de reiniciar o servidor a cada alteração. 
+
+## Instalação
+
+Digitamos no terminal
+```
+npm install nodemon -g
+```
+
+Com a flag `-g`, instalamos o Nodemon globalmente, então todos os projetos a partir de agora já irão contar com ele
+
+## Utilizando
+Agora sempre que formos rodar o servidor, utilizamos o comando: 
+
+```
+nodemon nome_programa.js
+```
+
