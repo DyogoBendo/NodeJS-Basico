@@ -3,6 +3,7 @@ const handlebars = require('express-handlebars')
 const app = express()
 const bodyParser = require('body-parser')
 const Post = require('./models/Post')
+const { get } = require("http")
 
 
 // Config
@@ -16,7 +17,7 @@ const Post = require('./models/Post')
 // Rotas
 
     app.get('/', function(req, res){
-        Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
+        Post.findAll({order: [['id', 'DESC']]}).then(function(posts){ // podemos ordenar de forma que quisermos
             res.render('home', {posts: posts}) // quando queremos passar informações para o frontend, passamos como segundo parametro essa chave
         }) // retorna todas as linhas da tabela posts
         // o then recebe como parametro esses posts
@@ -35,6 +36,14 @@ const Post = require('./models/Post')
         }).catch(function(erro){
             res.send('Erro em criar o post!')
         })
+    })
+
+    app.get('/deletar/:id', function(req, res){
+        Post.destroy({where: {'id': req.params.id}}).then(function(){
+            res.send('Postagem deletada com sucesso')
+        }).catch(function(erro){
+            res.send('Postagem naum existe!')
+        }) // apagamos um item
     })
 
 app.listen(8081, function(){
