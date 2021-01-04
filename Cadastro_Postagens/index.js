@@ -16,7 +16,10 @@ const Post = require('./models/Post')
 // Rotas
 
     app.get('/', function(req, res){
-        res.render('home')
+        Post.findAll({order: [['id', 'DESC']]}).then(function(posts){
+            res.render('home', {posts: posts}) // quando queremos passar informações para o frontend, passamos como segundo parametro essa chave
+        }) // retorna todas as linhas da tabela posts
+        // o then recebe como parametro esses posts
     })
 
     app.get('/cad', function(req, res){
