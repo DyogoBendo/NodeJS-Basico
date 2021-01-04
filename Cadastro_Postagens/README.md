@@ -21,3 +21,16 @@ Assim, sempre que criarmos outros arquivos do tipo handlebars, todo o corpo é a
 Para um formulário, indicamos a `action` como o nome da rota de destino. 
 
 Rotas do tipo Post não podem ser acessadas pela URL, diferente das GET; 
+
+# Body Parser
+Body Parser é uma biblioteca que visa facilitar o trabalho de pegar dados que são passados por um formulário
+
+Instalação:
+```
+npm install --save body-parser
+```
+
+Agora, para pegar qualquer dado vindo de um formulário, usamos: 
+```
+req.body.nome_campo
+```
