@@ -23,4 +23,12 @@ Executing (default): CREATE TABLE IF NOT EXISTS `postagens` (`id` INTEGER NOT NU
 Executing (default): SHOW INDEX FROM `postagens`
 ```
 
-Depois de criar, é recomendado que deixemos comentado o comando NomeModel.sync({force: true}), pois senão, todas as vezes que o script for executado, a tabela será recriada. 
+Depois de criar, é recomendado que deixemos comentado o comando `NomeModel.sync({force: true})`, pois senão, todas as vezes que o script for executado, a tabela será recriada. 
+
+Para inserirmos dados, basta usar:
+```
+NomeModel.create({
+    campo1: dado1
+    campo2: dado2
+    ....    
+```

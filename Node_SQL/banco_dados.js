@@ -52,3 +52,19 @@ const Usuario = sequelize.define('usuarios', {
 })
 
 // Usuario.sync({force: true})
+
+
+// Inserindo dados
+
+Postagem.create({
+    titulo: 'Sherck III',
+    conteudo: 'Melhor filme feito pela humanidade'
+})
+
+Usuario.create({
+    nome: 'Pedro', 
+    sobrenome: 'Arold', 
+    idade: 16,
+    email: 'pedrin@outlok.caum'
+
+})
