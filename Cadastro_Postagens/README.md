@@ -15,3 +15,5 @@ app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 Criamos então a pasta `views`, que deve ser escrita exatamente dessa forma. Nela, criamos outra pasta, chamada `layouts`. Que por sua vez, contém um arquivo do tipo handlebars, chamado `main.handlebars`, que é o template padrão da aplicação
 
 Em `handlebars({defaultLayout: 'main'})`, dizemos, que o layout padrão é o main. 
+
+Assim, sempre que criarmos outros arquivos do tipo handlebars, todo o corpo é aproveitado desse main
