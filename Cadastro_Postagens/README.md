@@ -16,4 +16,8 @@ Criamos então a pasta `views`, que deve ser escrita exatamente dessa forma. Nel
 
 Em `handlebars({defaultLayout: 'main'})`, dizemos, que o layout padrão é o main. 
 
-Assim, sempre que criarmos outros arquivos do tipo handlebars, todo o corpo é aproveitado desse main
+Assim, sempre que criarmos outros arquivos do tipo handlebars, todo o corpo é aproveitado desse main. 
+
+Para um formulário, indicamos a `action` como o nome da rota de destino. 
+
+Rotas do tipo Post não podem ser acessadas pela URL, diferente das GET; 
