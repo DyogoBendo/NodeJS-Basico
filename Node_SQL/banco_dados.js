@@ -19,3 +19,36 @@ sequelize.authenticate().then(function(){
 
 // o then() e catch() funcionam como um try catch
 
+
+// Models 
+
+const Postagem = sequelize.define('postagens', {
+    titulo: {
+        type: Sequelize.STRING // tipo do campo é varchar
+    }, 
+    conteudo: {
+        type: Sequelize.TEXT // tipo de varchar `longa`
+    }
+}) 
+
+// Geramos o model Postagem, que possui a definição de uma tabela, chamada postagems
+// e que tem os atributos titulo e conteudo
+
+// Postagem.sync({force: true}) // esse metodo sincroniza o model com o banco de dados, gerando a tabela também no banco
+
+const Usuario = sequelize.define('usuarios', {
+    nome: {
+        type: Sequelize.STRING
+    }, 
+    sobrenome: {
+        type: Sequelize.STRING
+    }, 
+    idade: {
+        type: Sequelize.INTEGER
+    },
+    email: {
+        type: Sequelize.STRING
+    }
+})
+
+// Usuario.sync({force: true})
