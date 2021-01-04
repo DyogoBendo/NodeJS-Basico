@@ -1,8 +1,6 @@
 const express = require("express")
 const handlebars = require('express-handlebars')
-const { get } = require("http")
 const app = express()
-const Sequelize = require('sequelize')
 const bodyParser = require('body-parser')
 
 
@@ -13,11 +11,6 @@ const bodyParser = require('body-parser')
     // Body Parser
         app.use(bodyParser.urlencoded({extended: false}))
         app.use(bodyParser.json())
-    // Conexão com o BD
-        const sequilize = new Sequelize('curso_node', 'root', '', {
-            host: 'localhost', 
-            dialect: 'mysql'
-        })
 
 // Rotas
     app.get('/cad', function(req, res){
