@@ -22,3 +22,6 @@ São arquivos de texto, que ficam armazenados no navegador do usuário. Neles, i
 Possuem o mesmo objetivo que os cookies, porém os dados das sessões são guardadas no servidor. 
 Uma sessão, ao ser iniciada, envia um cookie ao browser do usuário, com o ID da sessão. Todos os dados relativos a sessão, são enviados ao servidor, relacionados a esse ID. Sempre que o browser fizer uma requisição, ele envia junto o cookie, confirmando o ID da sessão, e permitindo que os dados da sessão que possui aquele ID possam ser acessados. 
 Ao fechar o navegador, a sessão é encerrada. 
+
+# Middlewares
+É uma parte da aplicação responsável por fazer a intermediação entre o servidor e o usuário, permitindo que tanto as respostas quanto as requisições sejam manipuladas antes de chegarem em seus respectivos destinos. 

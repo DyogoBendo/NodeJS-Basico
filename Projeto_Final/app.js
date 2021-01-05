@@ -22,6 +22,11 @@
         })
     // Public
         app.use(express.static(path.join(__dirname, 'public'))) // indicamos ao express a pasta que guarda nossos caminhos estáticos
+
+        app.use((req, res, next) =>{
+            console.log('Oi sou um middleware')
+            next() // permite que continue a requisição
+        }) // criando um middleware
 // Rotas
     app.use('/admin', admin) // passamos o caminho principal de uma rota, e suas rotas relacionadas
 // Outros
