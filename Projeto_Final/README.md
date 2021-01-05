@@ -7,6 +7,8 @@ Esse é um projeto prático, que visa, utilizando NodeJs, construir um blog, que
 - Body Parser
 - Mongoose
 - Bootstrap
+- Express Session
+- Connect Flash
 
 # Organização
 - App.js: arquivo principal, que é o arquivo que é executado.
