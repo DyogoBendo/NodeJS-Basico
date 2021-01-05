@@ -5,7 +5,7 @@
     const app = express()
     const admin = require('./routes/admin') // incluimos a rota na constante admin
     const path = require('path') // modulo para trabalhar com caminhos
-    // const mongoose = require('mongoose') 
+    const mongoose = require('mongoose') 
 // Configurações
     // Body Parser
         app.use(bodyParser.urlencoded({extended: true}))
@@ -14,7 +14,12 @@
         app.engine('handlebars', handlebars({defaultLayout: 'main'}))
         app.set('view engine', 'handlebars')
     // Mongoose
-        // Em breve
+        mongoose.Promise = global.Promise
+        mongoose.connect('mongodb://localhost/blog_app').then(()=>{
+            console.log('Conectado ao BD...')
+        }).catch(err =>{
+            console.log('Erro ao se conectar com o BD: ' + err)
+        })
     // Public
         app.use(express.static(path.join(__dirname, 'public'))) // indicamos ao express a pasta que guarda nossos caminhos estáticos
 // Rotas
