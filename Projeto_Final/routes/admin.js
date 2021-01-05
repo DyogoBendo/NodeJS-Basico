@@ -9,8 +9,12 @@ router.get('/posts', (req, res) => {
     res.send('Página de postagens')
 })
 
-router.get('/cat', (req, res) =>{
-    res.send('Pagina de categorias')
+router.get('/categorias', (req, res) =>{
+    res.render('admin/categorias')
+})
+
+router.get('/categorias/add', (req, res) =>{
+    res.render('admin/addcategorias')
 })
 
 module.exports = router // exportamos as rotas definidas nesse arquivo
