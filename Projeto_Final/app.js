@@ -3,6 +3,7 @@
     const handlebars = require('express-handlebars')
     const bodyParser = require('body-parser')
     const app = express()
+    const admin = require('./routes/admin') // incluimos a rota na constante admin
     // const mongoose = require('mongoose') 
 // Configurações
     // Body Parser
@@ -14,7 +15,7 @@
     // Mongoose
         // Em breve
 // Rotas
-
+    app.use('/admin', admin) // passamos o caminho principal de uma rota, e suas rotas relacionadas
 // Outros
 const PORT = 8081
 app.listen(PORT, () => {
