@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router() // criamos rotas em um arquivo separado assim
 
 router.get('/', (req, res) => {
-    res.send('Pagina principal do painel administartivo')
+    res.render('admin/index')
 })
 
 router.get('/posts', (req, res) => {

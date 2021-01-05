@@ -4,6 +4,7 @@
     const bodyParser = require('body-parser')
     const app = express()
     const admin = require('./routes/admin') // incluimos a rota na constante admin
+    const path = require('path') // modulo para trabalhar com caminhos
     // const mongoose = require('mongoose') 
 // Configurações
     // Body Parser
@@ -14,6 +15,8 @@
         app.set('view engine', 'handlebars')
     // Mongoose
         // Em breve
+    // Public
+        app.use(express.static(path.join(__dirname, 'public'))) // indicamos ao express a pasta que guarda nossos caminhos estáticos
 // Rotas
     app.use('/admin', admin) // passamos o caminho principal de uma rota, e suas rotas relacionadas
 // Outros
