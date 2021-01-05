@@ -14,3 +14,14 @@ Instalação:
 ```
 npm install --save mongoose
 ```
+
+# Comandos 
+Para verificar se um dado foi cadastrado corretamente, usamos:
+
+```
+mongo
+show databases;
+use nome_bd;
+show collections;
+db.nome_collection.find()
+```
