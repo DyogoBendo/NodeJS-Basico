@@ -7,7 +7,7 @@
     const path = require('path') // modulo para trabalhar com caminhos
     const mongoose = require('mongoose') 
     const session = require('express-session')
-    const flash = require('connect-flash')
+    const flash = require('connect-flash') // é uma sessão que dura até a página ser recarregada
 // Configurações
     // Session
         app.use(session({
