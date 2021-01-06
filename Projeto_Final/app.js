@@ -10,6 +10,7 @@ const session = require("express-session");
 const flash = require("connect-flash"); // é uma sessão que dura até a página ser recarregada
 const Postagem = mongoose.model("postagens");
 const Categoria = mongoose.model("categorias");
+const usuario = require('./routes/usuario')
 // Configurações
 // Session
 app.use(
@@ -124,6 +125,7 @@ app.get("/categorias/:slug", (req, res) => {
 });
 
 app.use("/admin", admin); // passamos o caminho principal de uma rota, e suas rotas relacionadas
+app.use('/usuarios', usuario)
 // Outros
 const PORT = 8081;
 app.listen(PORT, () => {
