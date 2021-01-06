@@ -8,6 +8,7 @@
     const mongoose = require('mongoose') 
     const session = require('express-session')
     const flash = require('connect-flash') // é uma sessão que dura até a página ser recarregada
+    const Postagem = mongoose.model('postagens')
 // Configurações
     // Session
         app.use(session({
@@ -43,6 +44,20 @@
             next() // permite que continue a requisição
         }) // criando um middleware
 // Rotas
+    app.get('/', (req, res) => {
+        Postagem.find().populate('categoria').sort({data: 'desc'}).then(postagens => {
+            res.render('index', {postagens: postagens.map(postagem => postagem.toJSON())})
+        }).catch(err => {
+            req.flash('error_msg', 'Erro interno')
+            res.redirect('/404')
+        })
+        
+    })
+
+    app.get('/404', (req, res) => {
+        res.send('Erro 404!')
+    })
+
     app.use('/admin', admin) // passamos o caminho principal de uma rota, e suas rotas relacionadas
 // Outros
 const PORT = 8081
