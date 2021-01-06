@@ -195,7 +195,16 @@ router.post('/postagem/edit', (req, res) => {
     res.redirect('/admin/postagens')
   })
 })
+})
 
+router.get('/postagens/delet/:id', (req, res) => {
+  Postagem.remove({_id: req.params.id}).then(() => {
+    req.flash('success_msg', "Deletado com sucesso!")
+    res.redirect('/admin/postagens')
+  }).catch(err => {
+    req.flash('error_msg', 'Houve um erro ao deletar')
+    res.redirect('/admin/postagens')
+  })
 })
 
 module.exports = router; // exportamos as rotas definidas nesse arquivo
