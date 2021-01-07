@@ -11,15 +11,17 @@ module.exports = function (passport) {
     new localstrategy(
       {
         usernameField: "email", // campo analisado, que eh unico
+        passwordField: 'senha'
       },
       (email, senha, done) => {
-        Usuario.findOne({ email: "email" }).then((usuario) => {
+        Usuario.findOne({ email: email }).then((usuario) => {
           if (!usuario) {
             return done(null, false, { message: "Conta não existe" }); // dados da conta autenticada; se autenticacao ocorreu com sucesso; uma mensagem
           } else {
+              console.log('klsajdklasd')
             bcrypt.compare(senha, usuario.senha, (erro, batem) => {
               if (batem) {
-                return done(null, user);
+                return done(null, usuario);
               } else {
                 return done(null, false, { message: "Credenciais incorretas" });
               }
@@ -30,12 +32,12 @@ module.exports = function (passport) {
     )
   );
   passport.serializeUser((user, done) => { // salva os dados do usuario em uma sessão
-    done (null, usuario.id)
+    done (null, user.id)
   });
 
   passport.deserializeUser((id, done) => {
       Usuario.findById(id, (err, usuario) => {
-          done(err, user)
+          done(err, usuario)
       })
   })
 };
