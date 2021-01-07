@@ -10,6 +10,7 @@ Esse é um projeto prático, que visa, utilizando NodeJs, construir um blog, que
 - Express Session
 - Connect Flash
 - bcryptjs
+- Passport / local
 
 # Organização
 - App.js: arquivo principal, que é o arquivo que é executado.

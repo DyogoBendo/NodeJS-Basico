@@ -10,7 +10,9 @@ const session = require("express-session");
 const flash = require("connect-flash"); // é uma sessão que dura até a página ser recarregada
 const Postagem = mongoose.model("postagens");
 const Categoria = mongoose.model("categorias");
-const usuario = require('./routes/usuario')
+const usuario = require("./routes/usuario");
+const passport = require("passport");
+require("./config/auth")(passport);
 // Configurações
 // Session
 app.use(
@@ -20,6 +22,10 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use(passport.initialize()); // importante ser nessa sequência
+app.use(passport.session());
+
 app.use(flash());
 // Middleware
 app.use((req, res, next) => {
@@ -106,7 +112,7 @@ app.get("/categorias/:slug", (req, res) => {
           .then((postagens) => {
             res.render("categorias/postagens", {
               postagens: postagens.map((postagem) => postagem.toJSON()),
-              categoria: categoria.toJSON()
+              categoria: categoria.toJSON(),
             });
           })
           .catch((err) => {
@@ -125,7 +131,7 @@ app.get("/categorias/:slug", (req, res) => {
 });
 
 app.use("/admin", admin); // passamos o caminho principal de uma rota, e suas rotas relacionadas
-app.use('/usuarios', usuario)
+app.use("/usuarios", usuario);
 // Outros
 const PORT = 8081;
 app.listen(PORT, () => {
