@@ -32,6 +32,7 @@ app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg"); // cria variavel global
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash('error')
+  res.locals.user = req.user || null  // guardamos dados do usuario logado em uma variavel global
   next();
 });
 // Body Parser

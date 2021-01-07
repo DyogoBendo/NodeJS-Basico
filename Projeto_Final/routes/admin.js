@@ -8,15 +8,17 @@ const Categoria = mongoose.model("categorias");
 require('../models/Postagem')
 const Postagem = mongoose.model('postagens')
 
-router.get("/", (req, res) => {
+const {isAdmin} = require('../helpers/isAdmin')
+  
+router.get("/", isAdmin, (req, res) => {
   res.render("admin/index");
 });
 
-router.get("/posts", (req, res) => {
+router.get("/posts", isAdmin, (req, res) => {
   res.send("Página de postagens");
 });
 
-router.get("/categorias", (req, res) => {
+router.get("/categorias", isAdmin, (req, res) => {
     Categoria.find().then((categorias) =>{
         res.render("admin/categorias", {categorias: categorias.map(categoria => categoria.toJSON())});
     }).catch(err => {
@@ -25,11 +27,11 @@ router.get("/categorias", (req, res) => {
     })
 });
 
-router.get("/categorias/add", (req, res) => {
+router.get("/categorias/add", isAdmin, (req, res) => {
   res.render("admin/addcategorias");
 });
 
-router.post("/categorias/nova", (req, res) => {
+router.post("/categorias/nova", isAdmin, (req, res) => {
   // validação de erros
   var erros = [];
 
@@ -74,7 +76,7 @@ router.post("/categorias/nova", (req, res) => {
   }
 });
 
-router.get('/categorias/edit/:id', (req, res) => {
+router.get('/categorias/edit/:id', isAdmin, (req, res) => {
     Categoria.findOne({_id : req.params.id}).then((categoria) =>{
         res.render('admin/editcategoria', {categoria: categoria.toJSON()})
     }).catch(err =>{
@@ -83,7 +85,7 @@ router.get('/categorias/edit/:id', (req, res) => {
     })
 })
 
-router.post('/categorias/edit', (req, res) => {
+router.post('/categorias/edit', isAdmin, (req, res) => {
     Categoria.findOne({_id: req.body.id}).then(categoria =>{
         categoria.nome = req.body.nome
         categoria.slug = req.body.slug
@@ -100,7 +102,7 @@ router.post('/categorias/edit', (req, res) => {
     })
 })
 
-router.post('/categorias/deletar', (req, res) => {
+router.post('/categorias/deletar', isAdmin, (req, res) => {
   Categoria.remove({_id: req.body.id}).then(() => {
     req.flash('success_msg', 'Categoria deletada com sucesso!')
     res.redirect('/admin/categorias')
@@ -110,7 +112,7 @@ router.post('/categorias/deletar', (req, res) => {
   })
 })
 
-router.get('/postagens', (req, res) => {
+router.get('/postagens', isAdmin, (req, res) => {
 
   Postagem.find().populate('categoria').sort({data:'desc'}).then((postagens) =>{
     res.render('admin/postagens', {postagens: postagens.map(postagem => postagem.toJSON())})
@@ -121,7 +123,7 @@ router.get('/postagens', (req, res) => {
   }) // populate automaticamente preenche as informaççoes sobre a Categoria
 } )
 
-router.get('/postagens/add', (req, res) => {
+router.get('/postagens/add', isAdmin, (req, res) => {
   Categoria.find().then((categorias) => {
     res.render('admin/addpostagens', {categorias: categorias.map(categoria => categoria.toJSON())})
   }).catch(err => {
@@ -130,7 +132,7 @@ router.get('/postagens/add', (req, res) => {
   })
 })
 
-router.post('/postagens/nova', (req, res) => {
+router.post('/postagens/nova', isAdmin, (req, res) => {
   var erros = []
 
   if (req.body.categoria == '0'){
@@ -158,7 +160,7 @@ router.post('/postagens/nova', (req, res) => {
   }
 })
 
-router.get('/postagens/edit/:id', (req, res) => {
+router.get('/postagens/edit/:id', isAdmin, (req, res) => {
 
   Postagem.findOne({_id: req.params.id}).then(postagem => {
     Categoria.find().then(categorias => {
@@ -175,7 +177,7 @@ router.get('/postagens/edit/:id', (req, res) => {
     res.redirect('/admin/postagens')
   })
 
-router.post('/postagem/edit', (req, res) => {
+router.post('/postagem/edit', isAdmin, (req, res) => {
   Postagem.findOne({_id: req.body.id}).then(postagem => {
     postagem.titulo = req.body.titulo
     postagem.slug = req.body.slug
@@ -197,7 +199,7 @@ router.post('/postagem/edit', (req, res) => {
 })
 })
 
-router.get('/postagens/delet/:id', (req, res) => {
+router.get('/postagens/delet/:id', isAdmin, (req, res) => {
   Postagem.remove({_id: req.params.id}).then(() => {
     req.flash('success_msg', "Deletado com sucesso!")
     res.redirect('/admin/postagens')
